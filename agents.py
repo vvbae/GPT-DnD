@@ -1,4 +1,10 @@
 import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 from langchain.memory import (
     ChatMessageHistory,
     ConversationBufferMemory,
@@ -8,7 +14,7 @@ from langchain.llms import OpenAI
 from langchain.chains import ConversationChain
 from langchain import OpenAI, ConversationChain, LLMChain, PromptTemplate
 
-os.environ["OPENAI_API_KEY"] = "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"
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 llm = OpenAI(temperature=0)
 history = ChatMessageHistory()
 
